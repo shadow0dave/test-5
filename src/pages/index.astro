@@ -1,0 +1,79 @@
+---
+import MainLayout from '../layouts/main.astro';
+
+// Array of inspiring quotes
+const quotes = [
+  { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
+  { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+  { text: "Success is not final, failure is not fatal: it is the courage to continue that counts.", author: "Winston Churchill" },
+  { text: "The future belongs to those who believe in the beauty of their dreams.", author: "Eleanor Roosevelt" },
+  { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+  { text: "Everything you've ever wanted is on the other side of fear.", author: "George Addair" },
+  { text: "Believe in yourself. You are braver than you think, more talented than you know, and capable of more than you imagine.", author: "Roy T. Bennett" },
+  { text: "I learned that courage was not the absence of fear, but the triumph over it.", author: "Nelson Mandela" },
+  { text: "The only impossible journey is the one you never begin.", author: "Tony Robbins" },
+  { text: "Your limitation—it's only your imagination.", author: "Unknown" },
+  { text: "Great things never come from comfort zones.", author: "Unknown" },
+  { text: "Dream it. Wish it. Do it.", author: "Unknown" },
+  { text: "Success doesn't just find you. You have to go out and get it.", author: "Unknown" },
+  { text: "The harder you work for something, the greater you'll feel when you achieve it.", author: "Unknown" },
+  { text: "Don't stop when you're tired. Stop when you're done.", author: "Unknown" },
+];
+
+// Array of inspiring background images from Unsplash
+const backgroundImages = [
+  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=80", // Mountain sunrise
+  "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1920&q=80", // Forest path
+  "https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=1920&q=80", // Ocean sunset
+  "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=1920&q=80", // Lake and mountains
+  "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1920&q=80", // Foggy mountains
+  "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920&q=80", // Forest trees
+  "https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=1920&q=80", // Beach waves
+  "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80", // Tropical beach
+  "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=1920&q=80", // Mountain peak
+  "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=1920&q=80", // Misty mountains
+];
+
+// Get random quote and background
+const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+const randomBackground = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
+---
+
+<MainLayout>
+  <div 
+    class="min-h-screen flex items-center justify-center p-8 relative overflow-hidden"
+    style={`background-image: url('${randomBackground}'); background-size: cover; background-position: center;`}
+  >
+    <!-- Dark overlay for better text readability -->
+    <div class="absolute inset-0 bg-black/40"></div>
+    
+    <!-- Quote container -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center">
+      <div class="bg-white/10 backdrop-blur-md rounded-2xl p-12 shadow-2xl border border-white/20">
+        <svg 
+          class="w-16 h-16 text-white/80 mx-auto mb-6" 
+          fill="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+        </svg>
+        
+        <blockquote class="text-white">
+          <p class="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight font-heading">
+            {randomQuote.text}
+          </p>
+          <footer class="text-xl md:text-2xl text-white/90 font-body">
+            — {randomQuote.author}
+          </footer>
+        </blockquote>
+        
+        <button 
+          onclick="location.reload()" 
+          class="mt-12 px-8 py-3 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white rounded-full font-button text-lg transition-all duration-300 border border-white/30 hover:scale-105"
+        >
+          Get New Inspiration
+        </button>
+      </div>
+    </div>
+  </div>
+</MainLayout>
